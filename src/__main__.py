@@ -105,9 +105,9 @@ async def near_me(ctx, x: float, y_or_z: float, z_or_y: Optional[float]):
 
     locations.sort(key=lambda loc: loc["dist"])
 
-    embeds = map(_create_embed, locations)
+    embeds = list(map(_create_embed, locations))
 
-    if len(list(embeds)) == 0:
+    if len(embeds) == 0:
         return await ctx.send("Nothing within 5000 blocks of you.")
     
     await EmbedPaginatorSession(ctx, *embeds).run()
