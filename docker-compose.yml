@@ -1,0 +1,16 @@
+version: "3.8"
+
+x-restart-policy: &restart_policy
+  restart: always
+
+services:
+  bot:
+    << : *restart_policy
+    build:
+      context: .
+    env_file: .env
+    networks:
+      - internal
+
+networks:
+  internal:
